@@ -1,0 +1,198 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+  background-image: url(images/background.jpg);
+  background-repeat: repeat-y;
+  background-size: cover;
+}
+
+body {
+  height: 100vh;
+}
+
+/* .container { */
+/* border: solid 4px red; */
+/* margin: 5px; */
+/* padding: 20px; */
+/* } */
+
+/* ======================================== */
+
+.wrapper {
+  /* border: 8px solid yellow; */
+  display: grid;
+  justify-content: center;
+  align-content: start;
+  height: 100%;
+
+  grid-template-areas:
+    "title title"
+    "game buttons";
+
+  grid-template-columns: 1fr min-content;
+  grid-template-rows: min-content 1fr;
+}
+
+/* Title */
+.title__container {
+  grid-area: title;
+  display: flex;
+  justify-content: center;
+}
+
+.title__h1 {
+  color: yellow;
+  font-size: 4rem;
+  padding: 1rem;
+}
+
+/* Description */
+
+/* .description__container {
+  grid-area: desc;
+  display: none;
+} */
+
+/* .description {
+} */
+
+/* Game container */
+.game__container {
+  grid-area: game;
+  display: grid;
+  grid-template-areas:
+    "numbers"
+    "dice";
+
+  border: 1rem solid transparent;
+  border-image: url(images/wood.png) 30 round;
+  background-color: rgb(165, 1, 1);
+  margin-left: 1rem;
+  margin-bottom: 2rem;
+  padding: 0px;
+}
+
+.numbers__container {
+  grid-area: numbers;
+  display: flex;
+  justify-content: center;
+}
+
+.number {
+  display: flex;
+  content: fill;
+  justify-content: center;
+  align-items: center;
+  font-size: 5rem;
+  color: white;
+  background-image: url(images/wood2.png);
+  border: 1px solid black;
+  width: 11.11%;
+}
+
+/* dice */
+.dice__container {
+  grid-area: dice;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 1rem 0rem;
+}
+
+.dice {
+  height: 15rem;
+}
+
+/* Buttons */
+.buttons__container {
+  grid-area: buttons;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  padding: 2rem;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15rem;
+  height: 7rem;
+  font-size: 3rem;
+  color: rgb(38, 0, 255);
+  border-radius: 12px;
+  border: none;
+  text-decoration: none;
+}
+
+.btn :hover {
+  text-decoration: none;
+}
+
+/* Hidden */
+
+.hidden {
+  opacity: 0.3;
+}
+
+.found {
+  color: red;
+  background-image: url(images/wood.png);
+}
+
+.startBtn {
+  display: none;
+}
+
+/* Media queries */
+
+/* @media only screen and (orientation: portrait) {
+  #container1 {
+    height: 100vw;
+
+    -webkit-transform: rotate(90deg);
+
+    -moz-transform: rotate(90deg);
+
+    -o-transform: rotate(90deg);
+
+    -ms-transform: rotate(90deg);
+
+    transform: rotate(90deg);
+  }
+
+  .wrapper {
+    /* border: 8px solid yellow; */
+/* display: grid;
+  }
+
+  .title__container,
+  .game__container,
+  .buttons__container {
+    display: none;
+  }
+
+  .startBtn {
+    display: grid;
+  }
+} */
+
+/* @media only screen and (orientation: landscape) {
+  #container1 {
+    -webkit-transform: rotate(0deg);
+
+    -moz-transform: rotate(0deg);
+
+    -o-transform: rotate(0deg);
+
+    -ms-transform: rotate(0deg);
+
+    transform: rotate(0deg);
+  }
+}  */
