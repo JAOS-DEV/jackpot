@@ -1,0 +1,2 @@
+# jackpot
+Jackpot dice game
