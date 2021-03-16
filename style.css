@@ -53,9 +53,10 @@ body {
   background: rgb(165, 1, 1);
   border-radius: 12px;
   font-size: 4rem;
-  padding: 0.5rem;
+  padding: 0.8rem 2rem;
   margin-bottom: 1rem;
   margin-top: 1rem;
+  border: 2px solid yellow;
 }
 
 .lives__container {
@@ -66,13 +67,14 @@ body {
 }
 
 .lives {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 600;
   color: yellow;
   background: rgb(165, 1, 1);
   border-radius: 12px;
   padding: 1.4rem;
   margin-right: 2rem;
+  border: 2px solid yellow;
 }
 
 /* Description */
@@ -133,6 +135,7 @@ body {
 
 .dice {
   height: 15rem;
+  border: 2px solid yellow;
 }
 
 /* Buttons */
@@ -154,7 +157,8 @@ body {
   font-size: 3rem;
   color: rgb(38, 0, 255);
   border-radius: 12px;
-  border: none;
+  border: 2px solid red;
+  /* border: none; */
   text-decoration: none;
   background-color: rgb(236, 222, 222);
   /* -webkit-appearance: none;
@@ -169,6 +173,7 @@ body {
 
 .hidden {
   opacity: 0.3;
+  border: none;
 }
 
 .found {

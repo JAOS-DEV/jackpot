@@ -54,9 +54,9 @@ const disableBtns = (btn) => {
 
 // Init Function
 const init = () => {
+  lives = 3;
   livesEl.innerHTML = `Lives - (${lives})`;
   foundNumbers = [0];
-  lives = 3;
   enableBtns(dice1BtnEl);
   enableBtns(dice2BtnEl);
   enableBtns(bothBtnEl);
@@ -64,6 +64,7 @@ const init = () => {
 
   disableBtns(dice1BtnEl);
   disableBtns(dice2BtnEl);
+  disableBtns(bothBtnEl);
   disableBtns(resetBtnEl);
   dice1BtnEl.src = `images/dice-1.png`;
   dice2BtnEl.src = `images/dice-2.png`;
@@ -82,6 +83,7 @@ rollBtnEl.addEventListener("click", () => {
   enableBtns(dice1BtnEl);
   enableBtns(dice2BtnEl);
   enableBtns(bothBtnEl);
+  disableBtns(rollBtnEl);
   //============================================//
   dice1 = Math.trunc(Math.random() * 6 + 1);
   dice2 = Math.trunc(Math.random() * 6 + 1);
@@ -97,23 +99,26 @@ rollBtnEl.addEventListener("click", () => {
 // Check Valid Dice Function
 const checkDice = (dice1, dice2, bothDice) => {
   const dice = [dice1, dice2, bothDice];
-  // Check lives
-  if (lives === 0) disableBtns(rollBtnEl);
 
   dice.forEach((dice, i) => {
     if (foundNumbers.includes(dice)) {
-      if (i === 0) {
-        disableBtns(dice1BtnEl);
-      } else if (i === 1) {
-        disableBtns(dice2BtnEl);
-      } else if (i === 2) {
-        disableBtns(bothBtnEl);
-      }
+      if (i === 0) disableBtns(dice1BtnEl);
+      if (i === 1) disableBtns(dice2BtnEl);
+      if (i === 2) disableBtns(bothBtnEl);
     }
   });
+
   if (dice1BtnEl.disabled && dice2BtnEl.disabled && bothBtnEl.disabled) {
     lives -= 1;
     livesEl.innerHTML = `Lifes - (${lives})`;
+    titleH1.innerHTML = `Life Lost`;
+    // Check lives
+    if (lives < 1) {
+      disableBtns(rollBtnEl);
+      livesEl.innerHTML = `Lifes - (${lives})`;
+    } else {
+      enableBtns(rollBtnEl);
+    }
   }
   console.log(lives);
   lostCheck();
@@ -121,22 +126,25 @@ const checkDice = (dice1, dice2, bothDice) => {
 
 // Win Check
 const winCheck = () => {
-  foundNumbers.length === 10 ? (titleH1.innerHTML = "WINNER!!") : (titleH1.innerHTML = "Playing");
+  if (foundNumbers.length === 10) {
+    titleH1.innerHTML = "WINNER!!";
+    enableBtns(resetBtnEl);
+  } else {
+    titleH1.innerHTML = "Playing";
+  }
 };
 
 // Lost Check
 const lostCheck = () => {
   if (dice1 === dice2) {
     if (foundNumbers.includes(dice1) && foundNumbers.includes(bothDice) && lives === 0) {
-      resetBtnEl.style.opacity = 100;
-      resetBtnEl.disabled = false;
+      enableBtns(resetBtnEl);
       titleH1.innerHTML = "GAME OVER";
     } else {
       titleH1.innerHTML = "Playing";
     }
   } else if (foundNumbers.includes(dice1) && foundNumbers.includes(dice2) && foundNumbers.includes(bothDice) && lives === 0) {
-    resetBtnEl.style.opacity = 100;
-    resetBtnEl.disabled = false;
+    enableBtns(resetBtnEl);
     titleH1.innerHTML = "GAME OVER";
   } else {
     titleH1.innerHTML = "Playing";

@@ -15,7 +15,7 @@ html {
 
 .wrapper__start {
   display: grid;
-  grid-template-rows: 1fr;
+  grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr;
   height: 100vh;
 }
@@ -37,4 +37,29 @@ html {
   font-size: 3.5rem;
   font-weight: 600;
   color: rgb(175, 175, 175);
+  border: 2px solid yellow;
 }
+
+.description__container {
+  display: flex;
+  justify-self: center;
+  align-self: center;
+  width: 75%;
+  height: 70%;
+  border: 2px solid yellow;
+  padding: 2.5rem;
+  background-color: maroon;
+}
+
+.description {
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: 400;
+  color: rgb(175, 175, 175);
+}
+
+/* .container {
+  border: solid 4px red;
+  margin: 5px;
+  padding: 20px;
+} */
