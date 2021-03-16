@@ -2,6 +2,7 @@
 
 // Title
 const titleH1 = document.querySelector(".title__h1");
+const livesEl = document.querySelector(".lives");
 // Numbers
 const stop1 = document.getElementById("number__1");
 const J = document.getElementById("number__2");
@@ -25,8 +26,9 @@ const startBtnEl = document.querySelector(".startBtn");
 const numbers = [stop1, J, A, C, K, P, O, T, stop2];
 const revealedNumbers = [".", "J", "A", "C", "K", "P", "O", "T", "."];
 let foundNumbers = [0];
+let lives = 3;
 // ============================================Vars===============================================
-let dice1, dice2, bothDice, playing;
+let dice1, dice2, bothDice;
 //================================================================================================
 // Start
 addEventListener(
@@ -52,7 +54,9 @@ const disableBtns = (btn) => {
 
 // Init Function
 const init = () => {
+  livesEl.innerHTML = `Lives - (${lives})`;
   foundNumbers = [0];
+  lives = 3;
   enableBtns(dice1BtnEl);
   enableBtns(dice2BtnEl);
   enableBtns(bothBtnEl);
@@ -60,6 +64,7 @@ const init = () => {
 
   disableBtns(dice1BtnEl);
   disableBtns(dice2BtnEl);
+  disableBtns(resetBtnEl);
   dice1BtnEl.src = `images/dice-1.png`;
   dice2BtnEl.src = `images/dice-2.png`;
   titleH1.innerHTML = `Jackpot`;
@@ -77,7 +82,6 @@ rollBtnEl.addEventListener("click", () => {
   enableBtns(dice1BtnEl);
   enableBtns(dice2BtnEl);
   enableBtns(bothBtnEl);
-  disableBtns(rollBtnEl);
   //============================================//
   dice1 = Math.trunc(Math.random() * 6 + 1);
   dice2 = Math.trunc(Math.random() * 6 + 1);
@@ -93,6 +97,9 @@ rollBtnEl.addEventListener("click", () => {
 // Check Valid Dice Function
 const checkDice = (dice1, dice2, bothDice) => {
   const dice = [dice1, dice2, bothDice];
+  // Check lives
+  if (lives === 0) disableBtns(rollBtnEl);
+
   dice.forEach((dice, i) => {
     if (foundNumbers.includes(dice)) {
       if (i === 0) {
@@ -104,6 +111,11 @@ const checkDice = (dice1, dice2, bothDice) => {
       }
     }
   });
+  if (dice1BtnEl.disabled && dice2BtnEl.disabled && bothBtnEl.disabled) {
+    lives -= 1;
+    livesEl.innerHTML = `Lifes - (${lives})`;
+  }
+  console.log(lives);
   lostCheck();
 };
 
@@ -115,14 +127,14 @@ const winCheck = () => {
 // Lost Check
 const lostCheck = () => {
   if (dice1 === dice2) {
-    if (foundNumbers.includes(dice1) && foundNumbers.includes(bothDice)) {
+    if (foundNumbers.includes(dice1) && foundNumbers.includes(bothDice) && lives === 0) {
       resetBtnEl.style.opacity = 100;
       resetBtnEl.disabled = false;
       titleH1.innerHTML = "GAME OVER";
     } else {
       titleH1.innerHTML = "Playing";
     }
-  } else if (foundNumbers.includes(dice1) && foundNumbers.includes(dice2) && foundNumbers.includes(bothDice)) {
+  } else if (foundNumbers.includes(dice1) && foundNumbers.includes(dice2) && foundNumbers.includes(bothDice) && lives === 0) {
     resetBtnEl.style.opacity = 100;
     resetBtnEl.disabled = false;
     titleH1.innerHTML = "GAME OVER";

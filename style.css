@@ -34,7 +34,7 @@ body {
   width: 100vw;
 
   grid-template-areas:
-    "title title"
+    "title lives"
     "game buttons";
 
   grid-template-columns: 1fr min-content;
@@ -50,8 +50,29 @@ body {
 
 .title__h1 {
   color: yellow;
+  background: rgb(165, 1, 1);
+  border-radius: 12px;
   font-size: 4rem;
-  padding: 1rem;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.lives__container {
+  grid-area: lives;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lives {
+  font-size: 2rem;
+  font-weight: 600;
+  color: yellow;
+  background: rgb(165, 1, 1);
+  border-radius: 12px;
+  padding: 1.4rem;
+  margin-right: 2rem;
 }
 
 /* Description */
@@ -78,7 +99,7 @@ body {
   border-color: rgba(0, 0, 0, 0, 01);
   border-image: url(images/wood.png) 30 round;
   background-color: rgb(165, 1, 1);
-  margin-left: 1rem;
+  margin-left: 3.5rem;
   margin-bottom: 2rem;
   padding: 0px;
 }
@@ -120,7 +141,8 @@ body {
   display: flex;
   flex-wrap: wrap;
   align-content: space-between;
-  padding: 2rem;
+  padding: 0 2rem 2rem;
+  margin-right: 2rem;
 }
 
 .btn {
