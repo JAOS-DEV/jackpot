@@ -15,7 +15,7 @@ html {
 
 .wrapper__start {
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr 2fr max-content;
   grid-template-columns: 1fr;
   height: 100vh;
 }
@@ -43,9 +43,9 @@ html {
 .description__container {
   display: flex;
   justify-self: center;
-  align-self: center;
+  align-self: start;
   width: 75%;
-  height: 70%;
+  height: fit-content;
   border: 2px solid yellow;
   padding: 2.5rem;
   background-color: maroon;
@@ -58,6 +58,12 @@ html {
   color: rgb(175, 175, 175);
 }
 
+.madeBy {
+  display: flex;
+  justify-self: center;
+  font-size: 1.5rem;
+  color: white;
+}
 /* .container {
   border: solid 4px red;
   margin: 5px;
