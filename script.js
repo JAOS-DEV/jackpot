@@ -1,4 +1,5 @@
 "use strict";
+window.scrollTo(0, 1);
 
 // Title
 const titleH1 = document.querySelector(".title__h1");
