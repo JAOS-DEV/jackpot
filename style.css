@@ -129,6 +129,8 @@ body {
   border-radius: 12px;
   border: none;
   text-decoration: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 .btn :hover {
