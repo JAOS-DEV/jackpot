@@ -104,13 +104,12 @@ const checkDice = (dice1, dice2, bothDice) => {
       }
     }
   });
-  winCheck();
+  lostCheck();
 };
 
 // Win Check
 const winCheck = () => {
   foundNumbers.length === 10 ? (titleH1.innerHTML = "WINNER!!") : (titleH1.innerHTML = "Playing");
-  lostCheck();
 };
 
 // Lost Check
@@ -142,6 +141,7 @@ const revealLetter = (dice) => {
   disableBtns(dice2BtnEl);
   disableBtns(bothBtnEl);
   enableBtns(rollBtnEl);
+  winCheck();
 };
 
 // BUTTON EVENT LISTENERS
