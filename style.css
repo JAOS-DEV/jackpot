@@ -11,12 +11,14 @@ html {
   background-repeat: repeat-y;
   background-size: cover;
 }
-/* 
+
 body {
-} */
+  height: 100vh;
+}
 
 .spacer {
   height: 1px;
+  background: chartreuse;
 }
 
 /* .container { */
@@ -32,7 +34,7 @@ body {
   display: grid;
   justify-content: center;
   align-content: start;
-  height: 100vh;
+  height: 100%;
   width: 100vw;
 
   grid-template-areas:
