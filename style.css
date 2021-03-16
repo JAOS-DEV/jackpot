@@ -129,6 +129,7 @@ body {
   border-radius: 12px;
   border: none;
   text-decoration: none;
+  background-color: grey;
   -webkit-appearance: none;
   -moz-appearance: none;
 }
