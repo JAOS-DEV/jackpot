@@ -1,5 +1,4 @@
 "use strict";
-window.scrollTo(0, 1);
 
 // Title
 const titleH1 = document.querySelector(".title__h1");
@@ -29,7 +28,14 @@ let foundNumbers = [0];
 // ============================================Vars===============================================
 let dice1, dice2, bothDice, playing;
 //================================================================================================
-// Start Button
+// Start
+addEventListener(
+  "load",
+  function () {
+    window.scrollTo(1, 0);
+  },
+  false
+);
 
 // FUNCTIONS
 // Enable Buttons
@@ -46,7 +52,6 @@ const disableBtns = (btn) => {
 
 // Init Function
 const init = () => {
-  console.log("init");
   foundNumbers = [0];
   enableBtns(dice1BtnEl);
   enableBtns(dice2BtnEl);
@@ -57,7 +62,6 @@ const init = () => {
   disableBtns(dice2BtnEl);
   dice1BtnEl.src = `images/dice-1.png`;
   dice2BtnEl.src = `images/dice-2.png`;
-
   titleH1.innerHTML = `Jackpot`;
 
   // Reset Numbers
@@ -79,7 +83,6 @@ rollBtnEl.addEventListener("click", () => {
   dice2 = Math.trunc(Math.random() * 6 + 1);
   bothDice = dice1 + dice2;
   if (bothDice > 9) bothDice = 0;
-  console.log(dice1, dice2, bothDice); //=========================== Log
   //============================================//
   dice1BtnEl.src = `images/dice-${dice1}.png`;
   dice2BtnEl.src = `images/dice-${dice2}.png`;
@@ -116,16 +119,16 @@ const lostCheck = () => {
     if (foundNumbers.includes(dice1) && foundNumbers.includes(bothDice)) {
       resetBtnEl.style.opacity = 100;
       resetBtnEl.disabled = false;
-      console.log("ALL DICE FOUND 1");
-    } else {
       titleH1.innerHTML = "GAME OVER";
+    } else {
+      titleH1.innerHTML = "Playing";
     }
   } else if (foundNumbers.includes(dice1) && foundNumbers.includes(dice2) && foundNumbers.includes(bothDice)) {
     resetBtnEl.style.opacity = 100;
     resetBtnEl.disabled = false;
     titleH1.innerHTML = "GAME OVER";
   } else {
-    console.log("PLAYING 2");
+    titleH1.innerHTML = "Playing";
   }
 };
 
@@ -135,7 +138,6 @@ const revealLetter = (dice) => {
   numbers[diceNum].innerHTML = `${revealedNumbers[diceNum]}`;
   numbers[diceNum].classList.add("found");
   foundNumbers.push(dice);
-  console.log(foundNumbers);
   disableBtns(dice1BtnEl);
   disableBtns(dice2BtnEl);
   disableBtns(bothBtnEl);
