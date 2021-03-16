@@ -11,10 +11,12 @@ html {
   background-repeat: repeat-y;
   background-size: cover;
 }
-
+/* 
 body {
-  height: 100vh;
-  width: 100vw;
+} */
+
+.spacer {
+  height: 1px;
 }
 
 /* .container { */
