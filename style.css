@@ -72,7 +72,10 @@ body {
     "numbers"
     "dice";
 
-  border: 1rem solid transparent;
+  /* border: 1rem solid transparent; --- removed shorthand for ios compatibility */
+  border-style: solid;
+  border-width: 1rem;
+  border-color: transparent;
   border-image: url(images/wood.png) 30 round;
   background-color: rgb(165, 1, 1);
   margin-left: 1rem;
