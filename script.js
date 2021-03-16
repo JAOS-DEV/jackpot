@@ -19,6 +19,7 @@ const bothBtnEl = document.getElementById("bothBtn");
 const resetBtnEl = document.getElementById("resetBtn");
 const dice1BtnEl = document.getElementById("dice1Btn");
 const dice2BtnEl = document.getElementById("dice2Btn");
+const startBtnEl = document.querySelector(".startBtn");
 
 // ============================================Arrays=============================================
 const numbers = [stop1, J, A, C, K, P, O, T, stop2];
@@ -27,6 +28,8 @@ let foundNumbers = [0];
 // ============================================Vars===============================================
 let dice1, dice2, bothDice, playing;
 //================================================================================================
+// Start Button
+
 // FUNCTIONS
 // Enable Buttons
 const enableBtns = (btn) => {
@@ -47,9 +50,14 @@ const init = () => {
   enableBtns(dice1BtnEl);
   enableBtns(dice2BtnEl);
   enableBtns(bothBtnEl);
+  enableBtns(rollBtnEl);
 
+  disableBtns(dice1BtnEl);
+  disableBtns(dice2BtnEl);
   dice1BtnEl.src = `images/dice-1.png`;
   dice2BtnEl.src = `images/dice-2.png`;
+
+  titleH1.innerHTML = `Jackpot`;
 
   // Reset Numbers
   for (let i = 0; i < numbers.length; i++) {
@@ -97,7 +105,7 @@ const checkDice = (dice1, dice2, bothDice) => {
 
 // Win Check
 const winCheck = () => {
-  foundNumbers.length === 10 ? (titleH1.innerHTML = "WINNER") : (titleH1.innerHTML = "Playing");
+  foundNumbers.length === 10 ? (titleH1.innerHTML = "WINNER!!") : (titleH1.innerHTML = "Playing");
   lostCheck();
 };
 

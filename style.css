@@ -7,13 +7,14 @@
 html {
   font-size: 62.5%;
   box-sizing: border-box;
-  background-image: url(images/background.jpg);
+  background: url(images/background.jpg);
   background-repeat: repeat-y;
   background-size: cover;
 }
 
 body {
   height: 100vh;
+  width: 100vw;
 }
 
 /* .container { */
@@ -29,7 +30,8 @@ body {
   display: grid;
   justify-content: center;
   align-content: start;
-  height: 100%;
+  height: 100vh;
+  width: 100vw;
 
   grid-template-areas:
     "title title"
@@ -129,9 +131,9 @@ body {
   border-radius: 12px;
   border: none;
   text-decoration: none;
-  background-color: grey;
-  -webkit-appearance: none;
-  -moz-appearance: none;
+  background-color: rgb(236, 222, 222);
+  /* -webkit-appearance: none;
+  -moz-appearance: none; */
 }
 
 .btn :hover {
@@ -149,13 +151,9 @@ body {
   background-image: url(images/wood.png);
 }
 
-.startBtn {
-  display: none;
-}
-
 /* Media queries */
 
-/* @media only screen and (orientation: portrait) {
+@media only screen and (orientation: portrait) {
   #container1 {
     height: 100vw;
 
@@ -168,25 +166,31 @@ body {
     -ms-transform: rotate(90deg);
 
     transform: rotate(90deg);
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+    background: url(images/background-landscape.jpg);
+    background-repeat: repeat-y;
+    background-size: cover;
   }
 
   .wrapper {
-    /* border: 8px solid yellow; */
-/* display: grid;
+    height: 100vw;
+    width: 100vh;
   }
 
-  .title__container,
-  .game__container,
-  .buttons__container {
-    display: none;
+  .game__container {
+    margin-left: 2rem;
   }
+}
 
-  .startBtn {
-    display: grid;
-  }
-} */
-
-/* @media only screen and (orientation: landscape) {
+@media only screen and (orientation: landscape) {
   #container1 {
     -webkit-transform: rotate(0deg);
 
@@ -198,4 +202,4 @@ body {
 
     transform: rotate(0deg);
   }
-}  */
+}
