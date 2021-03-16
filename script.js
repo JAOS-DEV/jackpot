@@ -129,6 +129,7 @@ const winCheck = () => {
   if (foundNumbers.length === 10) {
     titleH1.innerHTML = "WINNER!!";
     enableBtns(resetBtnEl);
+    disableBtns(rollBtnEl);
   } else {
     titleH1.innerHTML = "Playing";
   }
