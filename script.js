@@ -1,6 +1,7 @@
 "use strict";
 
 // Title
+const titleCheatBtn = document.querySelector(".title__container");
 const titleH1 = document.querySelector(".title__h1");
 const livesEl = document.querySelector(".lives");
 // Numbers
@@ -27,17 +28,10 @@ const numbers = [stop1, J, A, C, K, P, O, T, stop2];
 const revealedNumbers = [".", "J", "A", "C", "K", "P", "O", "T", "."];
 let foundNumbers = [0];
 let lives = 3;
+let cheatSwitch = false;
 // ============================================Vars===============================================
 let dice1, dice2, bothDice;
 //================================================================================================
-// Start
-// addEventListener(
-//   "load",
-//   function () {
-//     window.scrollTo(1, 0);
-//   },
-//   false
-// );
 
 if (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i)) {
   /* iOS hides Safari address bar */
@@ -69,6 +63,7 @@ const disableBtns = (btn) => {
 
 // Init Function
 const init = () => {
+  cheatSwitch = false;
   lives = 3;
   livesEl.innerHTML = `Lives - (${lives})`;
   foundNumbers = [0];
@@ -95,20 +90,26 @@ init();
 
 // GAME
 rollBtnEl.addEventListener("click", () => {
-  enableBtns(dice1BtnEl);
-  enableBtns(dice2BtnEl);
-  enableBtns(bothBtnEl);
-  disableBtns(rollBtnEl);
-  //============================================//
-  dice1 = Math.trunc(Math.random() * 6 + 1);
-  dice2 = Math.trunc(Math.random() * 6 + 1);
-  bothDice = dice1 + dice2;
-  if (bothDice > 9) bothDice = 0;
-  //============================================//
-  dice1BtnEl.src = `images/dice-${dice1}.png`;
-  dice2BtnEl.src = `images/dice-${dice2}.png`;
-  // Check available options
-  checkDice(dice1, dice2, bothDice);
+  // Cheat Check
+  if (cheatSwitch) cheat();
+
+  if (!cheatSwitch) {
+    enableBtns(dice1BtnEl);
+    enableBtns(dice2BtnEl);
+    enableBtns(bothBtnEl);
+    disableBtns(rollBtnEl);
+    //============================================//
+    dice1 = Math.trunc(Math.random() * 6 + 1);
+    dice2 = Math.trunc(Math.random() * 6 + 1);
+    bothDice = dice1 + dice2;
+    if (bothDice > 9) bothDice = 0;
+    //============================================//
+
+    dice1BtnEl.src = `images/dice-${dice1}.png`;
+    dice2BtnEl.src = `images/dice-${dice2}.png`;
+    // Check available options
+    checkDice(dice1, dice2, bothDice);
+  }
 });
 
 // Check Valid Dice Function
@@ -135,7 +136,7 @@ const checkDice = (dice1, dice2, bothDice) => {
       enableBtns(rollBtnEl);
     }
   }
-  console.log(lives);
+  // console.log(lives);
   lostCheck();
 };
 
@@ -194,3 +195,46 @@ bothBtnEl.addEventListener("click", () => {
 });
 
 resetBtnEl.addEventListener("click", init);
+
+// ======================================================
+// Cheat
+
+titleCheatBtn.addEventListener("click", () => {
+  //
+  cheatSwitch = cheatSwitch ? false : true;
+  console.log(cheatSwitch);
+});
+
+const cheat = () => {
+  enableBtns(dice1BtnEl);
+  enableBtns(dice2BtnEl);
+  enableBtns(bothBtnEl);
+  disableBtns(rollBtnEl);
+  //============================================//
+  dice1 = Math.trunc(Math.random() * 6 + 1);
+  dice2 = Math.trunc(Math.random() * 6 + 1);
+  bothDice = dice1 + dice2;
+  if (bothDice > 9) bothDice = 0;
+  console.log(`Og dice - ${dice1}/${dice2}/${bothDice}`);
+  //============================================//
+  // Check to see if number has already been found and replace if it has
+  dice1BtnEl.src = `images/dice-${dice1}.png`;
+  dice2BtnEl.src = `images/dice-${dice2}.png`;
+
+  while (foundNumbers.includes(dice1) && foundNumbers.includes(dice2) && foundNumbers.includes(bothDice)) {
+    foundNumbers.includes(dice1) ? (dice1 = Math.trunc(Math.random() * 6 + 1)) : dice1;
+    foundNumbers.includes(dice2) ? (dice2 = Math.trunc(Math.random() * 6 + 1)) : dice2;
+    // foundNumbers.includes(bothDice) ? (bothDice = Math.trunc(Math.random() * 9 + 1)) : bothDice;
+
+    if (foundNumbers.includes(bothDice)) {
+      dice1 = Math.trunc(Math.random() * 6 + 1);
+      dice2 = Math.trunc(Math.random() * 6 + 1);
+      bothDice = dice1 + dice2;
+      if (bothDice > 9) bothDice = 0;
+    }
+    dice1BtnEl.src = `images/dice-${dice1}.png`;
+    dice2BtnEl.src = `images/dice-${dice2}.png`;
+    console.log(`New dice - ${dice1}/${dice2}/${bothDice} ---------------`);
+  }
+  checkDice(dice1, dice2, bothDice);
+};
